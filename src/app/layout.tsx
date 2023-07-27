@@ -1,6 +1,7 @@
 import Link from "next/link";
 import "./globals.css";
 import { Roboto } from "next/font/google";
+import Navbar from "@/components/Navbar";
 
 const roboto = Roboto({ weight: ["400", "700"], subsets: ["latin"] });
 
@@ -17,17 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <main className="w-3/4 mx-auto">
-          <div className="text-3xl  py-5 bg-white flex justify-around items-center">
-            <Link className="bg-slate-500 text-white p-3" href="/">
-              Lista zamówień
-            </Link>
-            <Link className="bg-slate-500 text-white p-3" href="add">
-              Dodaj
-            </Link>
-          </div>
-          {children}
-        </main>
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );

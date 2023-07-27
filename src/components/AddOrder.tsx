@@ -26,6 +26,11 @@ const AddOrder = () => {
     }
   };
 
+  const removeCommodity = (name: string) => {
+    const filtred = commoditis.filter((item) => item.name !== name);
+
+    setCommodities(filtred);
+  };
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     validForm();
@@ -118,7 +123,7 @@ const AddOrder = () => {
           <div className="flex items-center">
             <span
               onClick={addToCommoditis}
-              className="py-2 px-3 bg-green-800 text-white mb-5 rounded-md self-end"
+              className="py-2 px-3 bg-green-800 text-white mb-5 rounded-md self-end hover:cursor-pointer"
             >
               +
             </span>
@@ -134,9 +139,12 @@ const AddOrder = () => {
               >
                 <div>{item.name}</div>
                 <div>{item.quantity}</div>
-                <div>{item.price}</div>
+                <div>{item.price} zł</div>
                 <div>{item.description}</div>
-                <div className="bg-red-500 text-white font-bold rounded-md">
+                <div
+                  className="bg-red-500 text-white font-bold rounded-md hover:cursor-pointer"
+                  onClick={() => removeCommodity(item.name)}
+                >
                   -
                 </div>
               </li>

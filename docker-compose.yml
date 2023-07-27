@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  app:
+    image: nextjs-app
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: deploy
+    restart: always
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - '3000:3000'
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
